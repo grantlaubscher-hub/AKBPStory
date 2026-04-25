@@ -3,25 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alex & Bo Pig | Banksia Beach After the War</title>
+  <title>Alex & Bo Pig</title>
   <style>
-    :root {
-      --black: #050505;
-      --night: #11110f;
-      --charcoal: #1c1b18;
-      --ash: #b9b2a5;
-      --bone: #f3eadb;
-      --muted: #b8ab98;
-      --rust: #a84d2a;
-      --ember: #f08a3e;
-      --smoke-blue: #748b8d;
-      --cold-sea: #6f9e9d;
-      --panel: rgba(255, 245, 225, 0.07);
-      --panel-strong: rgba(255, 245, 225, 0.13);
-      --line: rgba(255, 245, 225, 0.15);
-      --shadow: rgba(0, 0, 0, 0.72);
-    }
-
     * {
       box-sizing: border-box;
     }
@@ -32,21 +15,20 @@
 
     body {
       margin: 0;
-      color: var(--bone);
-      background: var(--black);
+      background: #050505;
+      color: #f4eadc;
       font-family: Georgia, "Times New Roman", serif;
-      overflow-x: hidden;
     }
 
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      z-index: 999;
       pointer-events: none;
+      z-index: 10;
       background:
-        radial-gradient(circle at 50% 45%, transparent 0 42%, rgba(0,0,0,0.42) 78%, rgba(0,0,0,0.82) 100%),
-        linear-gradient(to bottom, rgba(255,255,255,0.04), transparent 14%, transparent 82%, rgba(0,0,0,0.42));
+        radial-gradient(circle at center, transparent 0 52%, rgba(0, 0, 0, 0.45) 100%),
+        linear-gradient(to bottom, rgba(255,255,255,0.04), transparent 18%, transparent 84%, rgba(0,0,0,0.5));
       mix-blend-mode: multiply;
     }
 
@@ -54,637 +36,194 @@
       content: "";
       position: fixed;
       inset: 0;
-      z-index: 1000;
       pointer-events: none;
-      opacity: 0.18;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23noise)' opacity='.55'/%3E%3C/svg%3E");
+      z-index: 11;
+      opacity: 0.12;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23noise)' opacity='.45'/%3E%3C/svg%3E");
       mix-blend-mode: overlay;
     }
 
-    a {
-      color: inherit;
+    .page {
+      min-height: 100vh;
     }
 
-    .site {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 72% 8%, rgba(240, 138, 62, 0.2), transparent 28%),
-        radial-gradient(circle at 20% 22%, rgba(111, 158, 157, 0.1), transparent 34%),
-        linear-gradient(180deg, #050505 0%, #10100e 36%, #1a1512 72%, #080808 100%);
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px clamp(18px, 4vw, 52px);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0));
+      font-family: Arial, sans-serif;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+
+    .brand {
+      font-weight: 700;
+      white-space: nowrap;
     }
 
     .nav {
-      position: fixed;
-      z-index: 50;
-      top: 18px;
-      left: 50%;
-      transform: translateX(-50%);
       display: flex;
-      gap: 8px;
-      padding: 8px;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 999px;
-      background: rgba(0,0,0,0.42);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
-      font-family: Arial, sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      gap: clamp(12px, 3vw, 44px);
+      color: rgba(244, 234, 220, 0.78);
     }
 
     .nav a {
+      color: inherit;
       text-decoration: none;
-      padding: 9px 12px;
-      border-radius: 999px;
-      color: rgba(243,234,219,0.74);
     }
 
     .nav a:hover {
-      background: rgba(255,255,255,0.08);
-      color: var(--bone);
+      color: #ffffff;
     }
 
-    .hero {
-      min-height: 100svh;
-      position: relative;
-      display: grid;
-      place-items: end start;
-      padding: min(14vh, 120px) 6vw 8vh;
-      isolation: isolate;
-      overflow: hidden;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.15) 38%, rgba(0,0,0,0.82) 100%),
-        radial-gradient(circle at 72% 34%, rgba(240,138,62,0.34), transparent 24%),
-        linear-gradient(115deg, rgba(7,7,7,0.2), rgba(7,7,7,0.96) 76%),
-        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=85");
-      background-size: cover;
-      background-position: center;
-      filter: saturate(0.72) contrast(1.12) brightness(0.58);
-      transform: scale(1.03);
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 38vh;
-      z-index: -2;
-      background: linear-gradient(to top, #050505, transparent);
-    }
-
-    .hero-content {
-      width: min(1040px, 100%);
-      position: relative;
-      z-index: 1;
-    }
-
-    .rating-line {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 24px;
-      color: rgba(243,234,219,0.72);
-      font: 700 0.72rem/1.4 Arial, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-    }
-
-    .rating-line::before {
-      content: "";
-      width: 44px;
-      height: 1px;
-      background: var(--ember);
-      box-shadow: 0 0 20px rgba(240,138,62,0.6);
-    }
-
-    h1 {
-      margin: 0;
-      max-width: 980px;
-      font-size: clamp(4rem, 12vw, 12rem);
-      line-height: 0.78;
-      letter-spacing: -0.08em;
-      text-wrap: balance;
-      text-shadow: 0 24px 60px rgba(0,0,0,0.75);
-    }
-
-    .hero-subtitle {
-      max-width: 760px;
-      margin: 30px 0 0;
-      color: rgba(243,234,219,0.78);
-      font-size: clamp(1.05rem, 2vw, 1.5rem);
-      line-height: 1.65;
-      text-shadow: 0 8px 22px rgba(0,0,0,0.85);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 34px;
-      font-family: Arial, sans-serif;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      padding: 13px 18px;
-      border: 1px solid rgba(243,234,219,0.2);
-      border-radius: 999px;
-      background: rgba(0,0,0,0.42);
-      backdrop-filter: blur(14px);
-      color: rgba(243,234,219,0.88);
-      box-shadow: 0 18px 48px rgba(0,0,0,0.34);
-      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(243,234,219,0.38);
-    }
-
-    .button span {
-      color: var(--ember);
-    }
-
-    .film-strip {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      padding: 18px 6vw;
-      background: rgba(0,0,0,0.58);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .frame {
-      min-height: 190px;
-      border: 1px solid rgba(255,255,255,0.11);
-      border-radius: 18px;
-      overflow: hidden;
-      position: relative;
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 22px 55px rgba(0,0,0,0.42);
-      filter: saturate(0.72) contrast(1.08);
-    }
-
-    .frame::after {
-      content: attr(data-label);
-      position: absolute;
-      left: 14px;
-      right: 14px;
-      bottom: 14px;
-      color: rgba(243,234,219,0.82);
-      font: 700 0.72rem/1.4 Arial, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      text-shadow: 0 3px 12px rgba(0,0,0,0.9);
-    }
-
-    .frame.one {
-      background-image: linear-gradient(to top, rgba(0,0,0,0.86), transparent), url("https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80");
-    }
-
-    .frame.two {
-      background-image: linear-gradient(to top, rgba(0,0,0,0.86), transparent), url("https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80");
-    }
-
-    .frame.three {
-      background-image: linear-gradient(to top, rgba(0,0,0,0.86), transparent), url("https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=900&q=80");
-    }
-
-    .frame.four {
-      background-image: linear-gradient(to top, rgba(0,0,0,0.86), transparent), url("https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80");
-    }
-
-    .story {
-      width: min(1160px, 100%);
-      margin: 0 auto;
-      padding: 82px 6vw 120px;
-    }
-
-    .chapter {
-      display: grid;
-      grid-template-columns: 0.78fr 1.22fr;
-      gap: clamp(28px, 5vw, 70px);
-      align-items: center;
-      padding: 86px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .chapter:nth-child(even) {
-      grid-template-columns: 1.22fr 0.78fr;
-    }
-
-    .chapter:nth-child(even) .chapter-image {
-      order: 2;
-    }
-
-    .chapter-kicker {
-      color: var(--ember);
-      font: 700 0.76rem/1.5 Arial, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      margin-bottom: 16px;
-    }
-
-    .chapter h2 {
-      margin: 0 0 22px;
-      font-size: clamp(2.4rem, 5vw, 5.6rem);
-      line-height: 0.9;
-      letter-spacing: -0.065em;
-      text-wrap: balance;
-    }
-
-    .chapter p {
-      max-width: 760px;
-      margin: 0 0 19px;
-      color: rgba(243,234,219,0.74);
-      font-size: clamp(1.02rem, 1.55vw, 1.26rem);
-      line-height: 1.82;
-    }
-
-    .chapter-image {
-      min-height: 560px;
-      border-radius: 28px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.13);
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 34px 90px rgba(0,0,0,0.62);
-      transform: translateZ(0);
-    }
-
-    .chapter-image::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0.72)),
-        radial-gradient(circle at 62% 24%, rgba(240,138,62,0.26), transparent 26%);
-      z-index: 1;
-    }
-
-    .chapter-image::after {
-      position: absolute;
-      left: 22px;
-      right: 22px;
-      bottom: 22px;
-      z-index: 2;
-      color: rgba(243,234,219,0.72);
-      font: 700 0.72rem/1.5 Arial, sans-serif;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-shadow: 0 8px 18px rgba(0,0,0,0.9);
-    }
-
-    .image-door {
-      background-image: url("https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1300&q=85");
-    }
-
-    .image-door::after {
-      content: "The front door / 6:04 AM";
-    }
-
-    .image-war {
-      background-image: url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1300&q=85");
-      filter: saturate(0.62) contrast(1.16) brightness(0.68);
-    }
-
-    .image-war::after {
-      content: "The pulse / 3:17 AM";
-    }
-
-    .image-road {
-      background-image: url("https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1300&q=85");
-    }
-
-    .image-road::after {
-      content: "Banksia Beach road / no traffic";
-    }
-
-    .image-water {
-      background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1300&q=85");
-      filter: saturate(0.58) contrast(1.1) brightness(0.62);
-    }
-
-    .image-water::after {
-      content: "The Passage / first signal";
-    }
-
-    .quote {
-      margin: 80px auto;
-      max-width: 980px;
-      padding: clamp(28px, 5vw, 58px);
-      border: 1px solid rgba(255,255,255,0.13);
-      border-radius: 34px;
-      background:
-        linear-gradient(135deg, rgba(240,138,62,0.12), transparent 38%),
-        rgba(255,255,255,0.04);
-      box-shadow: 0 30px 90px rgba(0,0,0,0.45);
-    }
-
-    .quote p {
-      margin: 0;
-      font-size: clamp(1.8rem, 4.2vw, 4.6rem);
-      line-height: 1.03;
-      letter-spacing: -0.055em;
-    }
-
-    .route-card {
-      margin-top: 30px;
-      max-width: 760px;
-      border-radius: 28px;
-      padding: 24px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background:
-        linear-gradient(135deg, rgba(111,158,157,0.13), transparent 46%),
-        rgba(255,255,255,0.05);
-      font-family: Arial, sans-serif;
-      box-shadow: 0 24px 70px rgba(0,0,0,0.36);
-    }
-
-    .route-card strong {
-      display: block;
-      margin-bottom: 14px;
-      color: rgba(243,234,219,0.9);
-      letter-spacing: 0.04em;
-    }
-
-    .route {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .route span {
-      padding: 9px 12px;
-      border-radius: 999px;
-      color: rgba(243,234,219,0.76);
-      background: rgba(0,0,0,0.32);
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-
-    .finale {
-      min-height: 100svh;
-      position: relative;
+    .artwork-wrap {
+      width: 100%;
+      min-height: 100vh;
       display: grid;
       place-items: center;
-      padding: 120px 6vw;
-      overflow: hidden;
-      text-align: center;
-      isolation: isolate;
-    }
-
-    .finale::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -3;
+      padding: 72px 0 0;
       background:
-        linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.84)),
-        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=85");
-      background-size: cover;
-      background-position: center;
-      filter: saturate(0.52) contrast(1.14) brightness(0.55);
-      transform: scale(1.04);
+        radial-gradient(circle at 50% 18%, rgba(229, 137, 61, 0.16), transparent 32%),
+        linear-gradient(180deg, #050505 0%, #12100d 45%, #050505 100%);
     }
 
-    .finale::after {
-      content: "";
-      position: absolute;
-      width: min(42vw, 460px);
-      aspect-ratio: 1;
-      border-radius: 999px;
-      top: 12vh;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: -2;
-      background: radial-gradient(circle, rgba(240,138,62,0.48), rgba(240,138,62,0.12) 48%, transparent 72%);
-      filter: blur(4px);
-    }
-
-    .finale-content {
-      max-width: 920px;
-    }
-
-    .finale h2 {
-      margin: 0 0 26px;
-      font-size: clamp(3.4rem, 9vw, 9.5rem);
-      line-height: 0.82;
-      letter-spacing: -0.075em;
-      text-shadow: 0 28px 70px rgba(0,0,0,0.82);
-    }
-
-    .finale p {
-      max-width: 760px;
-      margin: 0 auto;
-      color: rgba(243,234,219,0.78);
-      font-size: clamp(1.06rem, 2vw, 1.42rem);
-      line-height: 1.76;
-      text-shadow: 0 12px 28px rgba(0,0,0,0.86);
-    }
-
-    footer {
-      padding: 28px 6vw 48px;
-      text-align: center;
-      color: rgba(243,234,219,0.46);
-      font: 0.86rem/1.6 Arial, sans-serif;
-      background: #050505;
+    .artwork {
+      width: 100%;
+      max-width: 1600px;
+      display: block;
+      box-shadow: 0 40px 130px rgba(0, 0, 0, 0.75);
       border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    @media (max-width: 860px) {
+    .fallback {
+      max-width: 760px;
+      padding: 120px 24px;
+      text-align: center;
+      display: none;
+    }
+
+    .fallback h1 {
+      margin: 0 0 20px;
+      font-size: clamp(3rem, 10vw, 8rem);
+      line-height: 0.85;
+      letter-spacing: -0.07em;
+    }
+
+    .fallback p {
+      margin: 0 auto;
+      max-width: 640px;
+      color: rgba(244, 234, 220, 0.78);
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .story-text {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 96px 24px 120px;
+      color: rgba(244, 234, 220, 0.82);
+    }
+
+    .story-text h2 {
+      margin: 0 0 20px;
+      font-size: clamp(2.4rem, 6vw, 5.8rem);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      color: #f4eadc;
+    }
+
+    .story-text p {
+      font-size: clamp(1.05rem, 2vw, 1.32rem);
+      line-height: 1.82;
+      margin: 0 0 22px;
+    }
+
+    .credit {
+      padding: 28px 20px 42px;
+      text-align: center;
+      color: rgba(244,234,220,0.45);
+      font-family: Arial, sans-serif;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 760px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        background: rgba(0,0,0,0.65);
+        backdrop-filter: blur(12px);
+      }
+
       .nav {
-        width: calc(100% - 28px);
-        justify-content: center;
+        width: 100%;
         overflow-x: auto;
+        padding-bottom: 4px;
       }
 
-      .hero {
+      .artwork-wrap {
         padding-top: 120px;
-      }
-
-      .film-strip {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .chapter,
-      .chapter:nth-child(even) {
-        grid-template-columns: 1fr;
-      }
-
-      .chapter:nth-child(even) .chapter-image {
-        order: 0;
-      }
-
-      .chapter-image {
-        min-height: 420px;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .film-strip {
-        grid-template-columns: 1fr;
-      }
-
-      .nav {
-        font-size: 0.68rem;
-      }
-
-      .chapter {
-        padding: 58px 0;
-      }
-
-      .chapter-image {
-        min-height: 360px;
-        border-radius: 22px;
       }
     }
   </style>
 </head>
 <body>
-  <main class="site">
-    <nav class="nav" aria-label="Story navigation">
-      <a href="#top">Opening</a>
-      <a href="#war">The War</a>
-      <a href="#walk">The Walk</a>
-      <a href="#signal">The Signal</a>
-    </nav>
+  <main class="page" id="home">
+    <header class="topbar">
+      <div class="brand">Alex & Bo Pig</div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#story">Story</a>
+        <a href="#hope">Hope</a>
+      </nav>
+    </header>
 
-    <section class="hero" id="top">
-      <div class="hero-content">
-        <div class="rating-line">A Banksia Beach story</div>
-        <h1>Alex &<br />Bo Pig</h1>
-        <p class="hero-subtitle">
-          After a mysterious war moves through the coast without warning, Alex opens the door of her Banksia Beach home and finds the world outside remade in ash, silence, and impossible light. Beside her walks Bo Pig, her merle border collie, brave enough to lead them into whatever remains.
-        </p>
-        <div class="hero-actions">
-          <a class="button" href="#door"><span>01</span> Enter the story</a>
-          <a class="button" href="#route"><span>Map</span> Their first route</a>
-        </div>
-      </div>
-    </section>
+    <section class="artwork-wrap" aria-label="Cinematic visual story of Alex and Bo Pig">
+      <!--
+        IMPORTANT:
+        Upload the generated image to the same GitHub repository folder as this index.html file.
+        Rename the image exactly to: alex-bo-pig-cinematic.png
+      -->
+      <img
+        class="artwork"
+        src="alex-bo-pig-cinematic.png"
+        alt="Cinematic visual story of Alex and Bo Pig walking through an apocalyptic Banksia Beach after a mysterious war."
+        onerror="this.style.display='none'; document.querySelector('.fallback').style.display='block';"
+      />
 
-    <section class="film-strip" aria-label="Cinematic story stills">
-      <div class="frame one" data-label="The house"></div>
-      <div class="frame two" data-label="The road"></div>
-      <div class="frame three" data-label="The trees"></div>
-      <div class="frame four" data-label="The silence"></div>
-    </section>
-
-    <section class="story">
-      <article class="chapter" id="door">
-        <div class="chapter-image image-door" aria-label="Cinematic image of a lonely house at dawn"></div>
-        <div class="chapter-copy">
-          <div class="chapter-kicker">Chapter 01 / 6:04 AM</div>
-          <h2>The door opened onto a different world</h2>
-          <p>
-            The house still held the small, ordinary evidence of yesterday: a mug beside the sink, a pair of sandals by the back door, Bo Pig’s lead hanging from its hook. Inside, everything was quiet enough to seem staged.
-          </p>
-          <p>
-            Outside, Banksia Beach had lost its colour. The palms stood black against a bruised sky. Fine ash drifted across the driveway and settled on the roof of Alex’s car, soft as flour, grey as bone. Far off, somewhere toward the Passage, something metal knocked slowly in the wind.
-          </p>
-          <p>
-            Bo Pig stepped out first. His merle coat looked almost blue in the dead morning light. He lowered his nose to the ash, breathed in the changed world, and gave one uncertain wag of his tail.
-          </p>
-        </div>
-      </article>
-
-      <article class="chapter" id="war">
-        <div class="chapter-image image-war" aria-label="Cinematic storm sky after a mysterious war"></div>
-        <div class="chapter-copy">
-          <div class="chapter-kicker">Chapter 02 / 3:17 AM</div>
-          <h2>The war had passed without a face</h2>
-          <p>
-            No one had seen an army. No one had heard engines. The war came as a pressure behind the eyes, as a low pulse beneath the floorboards, as a pale flash that turned the clouds white from the inside.
-          </p>
-          <p>
-            At 3:17, every clock stopped. Every screen went black. The windows shivered in their frames, then bowed inward as if the whole night had taken a breath against the glass.
-          </p>
-          <p>
-            By dawn, the neighbourhood was intact but emptied of explanation. The houses remained. The letterboxes remained. The streets remained. What was missing was the sound of people believing tomorrow would arrive as expected.
-          </p>
-        </div>
-      </article>
-
-      <div class="quote">
-        <p>The world had ended without explaining itself. Bo Pig, who had never trusted explanations, simply kept walking.</p>
-      </div>
-
-      <article class="chapter" id="walk">
-        <div class="chapter-image image-road" aria-label="Cinematic empty coastal road after disaster"></div>
-        <div class="chapter-copy">
-          <div class="chapter-kicker">Chapter 03 / The first kilometre</div>
-          <h2>Past the canals and burnt banksias</h2>
-          <p>
-            Alex followed the white flash of Bo Pig’s tail through streets that were almost familiar. A sprinkler ticked over a dead lawn. A bicycle lay on its side in the gutter. A curtain moved in an upstairs window, though there was no breeze strong enough to move it.
-          </p>
-          <p>
-            The banksias along the verge had split open in the heat, their seed pods cracked like little black mouths. Bo Pig sniffed each one with grave professional interest, then looked back at Alex, impatient with grief, ready for the next clue.
-          </p>
-          <p>
-            Alex counted her steps because counting was easier than calling out. She counted the driveways, the abandoned cars, the silent houses. She counted Bo Pig’s paw prints where they appeared in the ash and disappeared again on the bitumen.
-          </p>
-
-          <div class="route-card" id="route">
-            <strong>Alex and Bo Pig’s first route</strong>
-            <div class="route" aria-label="Route markers">
-              <span>Front door</span>
-              <span>Ash driveway</span>
-              <span>Silent canal</span>
-              <span>Burnt banksias</span>
-              <span>Empty road</span>
-              <span>Old jetty</span>
-              <span>Pumicestone Passage</span>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="chapter" id="signal">
-        <div class="chapter-image image-water" aria-label="Cinematic dark shoreline with distant light"></div>
-        <div class="chapter-copy">
-          <div class="chapter-kicker">Chapter 04 / The far shore</div>
-          <h2>The water was still there</h2>
-          <p>
-            At the old jetty, the world became wider. The Pumicestone Passage moved under the ruined sky with the same patient rhythm it had carried yesterday, and the day before, and every day Alex had mistaken for permanent.
-          </p>
-          <p>
-            She sat on the boards and finally let herself shake. Bo Pig pressed his warm body against her leg. There was ash on his whiskers and salt in the fur under his chin. He watched the horizon as if he had been expecting it to speak.
-          </p>
-          <p>
-            Then, across the water, something flashed once. Not lightning. Not fire. A deliberate point of light from the far shore. Alex stood. Bo Pig was already standing, ears forward, body still, every instinct aimed at the impossible fact of someone else alive.
-          </p>
-        </div>
-      </article>
-    </section>
-
-    <section class="finale">
-      <div class="finale-content">
-        <h2>So they walked toward the light.</h2>
+      <div class="fallback">
+        <h1>Alex & Bo Pig</h1>
         <p>
-          Alex with ash on her cheeks. Bo Pig with salt on his whiskers. Behind them, the quiet house waited in Banksia Beach. Ahead, the broken world held its breath, and somewhere across the Passage, someone was still alive enough to shine.
+          The image file could not be found. Upload the generated artwork beside this index.html file and name it alex-bo-pig-cinematic.png.
         </p>
       </div>
+    </section>
+
+    <section class="story-text" id="story">
+      <h2>A story of survival. A bond that remains.</h2>
+      <p>
+        When a mysterious war came through, Alex and her merle border collie, Bo Pig, walked out of their home in Banksia Beach and into a world changed beyond recognition. The roads were empty, the air was thick with dust and ash, and the silence felt larger than the sky.
+      </p>
+      <p>
+        They did not have a plan. They had each other. Bo Pig kept moving forward, nose low to the ground, ears raised toward every distant sound. Alex followed, step by step, through the ruins of a place that used to feel safe.
+      </p>
+      <p id="hope">
+        Somewhere beyond the smoke and broken streets, there was still light. As long as Alex and Bo Pig were together, there was still a way forward.
+      </p>
     </section>
   </main>
 
-  <footer>
-    Static single-page story site. Replace the image URLs with your own cinematic artwork or photos whenever you are ready.
+  <footer class="credit">
+    Alex & Bo Pig — Banksia Beach after the war.
   </footer>
 </body>
 </html>
