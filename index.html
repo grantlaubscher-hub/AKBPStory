@@ -24,11 +24,11 @@
       content: "";
       position: fixed;
       inset: 0;
+      z-index: 100;
       pointer-events: none;
-      z-index: 10;
       background:
-        radial-gradient(circle at center, transparent 0 52%, rgba(0, 0, 0, 0.45) 100%),
-        linear-gradient(to bottom, rgba(255,255,255,0.04), transparent 18%, transparent 84%, rgba(0,0,0,0.5));
+        radial-gradient(circle at center, transparent 0 55%, rgba(0, 0, 0, 0.5) 100%),
+        linear-gradient(to bottom, rgba(255,255,255,0.035), transparent 18%, transparent 84%, rgba(0,0,0,0.48));
       mix-blend-mode: multiply;
     }
 
@@ -36,15 +36,15 @@
       content: "";
       position: fixed;
       inset: 0;
+      z-index: 101;
       pointer-events: none;
-      z-index: 11;
-      opacity: 0.12;
+      opacity: 0.11;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23noise)' opacity='.45'/%3E%3C/svg%3E");
       mix-blend-mode: overlay;
     }
 
-    .page {
-      min-height: 100vh;
+    a {
+      color: inherit;
     }
 
     .topbar {
@@ -52,17 +52,17 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 20;
+      z-index: 50;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      padding: 18px clamp(18px, 4vw, 52px);
-      background: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0));
+      align-items: center;
+      gap: 24px;
+      padding: 18px clamp(18px, 4vw, 56px);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.78), rgba(0,0,0,0));
       font-family: Arial, sans-serif;
+      font-size: 0.74rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      font-size: 0.75rem;
     }
 
     .brand {
@@ -72,95 +72,248 @@
 
     .nav {
       display: flex;
-      gap: clamp(12px, 3vw, 44px);
-      color: rgba(244, 234, 220, 0.78);
+      gap: clamp(12px, 3vw, 42px);
+      color: rgba(244,234,220,0.72);
     }
 
     .nav a {
-      color: inherit;
       text-decoration: none;
     }
 
     .nav a:hover {
-      color: #ffffff;
+      color: #fff;
     }
 
-    .artwork-wrap {
-      width: 100%;
+    .hero {
       min-height: 100vh;
+      position: relative;
+      display: grid;
+      align-items: end;
+      padding: 120px clamp(22px, 6vw, 90px) 76px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.82)),
+        url("images/01-alex-bo-pig-doorway.png");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(0.78) contrast(1.1) brightness(0.82);
+      transform: scale(1.02);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle at 72% 34%, rgba(241,137,61,0.22), transparent 34%);
+    }
+
+    .kicker {
+      margin-bottom: 20px;
+      color: #f08a3e;
+      font: 700 0.76rem/1.5 Arial, sans-serif;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 960px;
+      margin: 0;
+      font-size: clamp(4.5rem, 13vw, 13rem);
+      line-height: 0.78;
+      letter-spacing: -0.08em;
+      text-shadow: 0 28px 80px rgba(0,0,0,0.85);
+    }
+
+    .hero p {
+      max-width: 740px;
+      margin: 30px 0 0;
+      color: rgba(244,234,220,0.8);
+      font-size: clamp(1.08rem, 2vw, 1.48rem);
+      line-height: 1.68;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.9);
+    }
+
+    .story-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 88vh;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      background: #090909;
+    }
+
+    .story-section:nth-child(even) .story-image {
+      order: 2;
+    }
+
+    .story-image {
+      min-height: 560px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.02), rgba(0,0,0,0.58)),
+        radial-gradient(circle at 50% 30%, transparent, rgba(0,0,0,0.28));
+    }
+
+    .story-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(48px, 7vw, 110px);
+      background:
+        radial-gradient(circle at 10% 20%, rgba(240,138,62,0.09), transparent 28%),
+        linear-gradient(135deg, #11100e, #050505);
+    }
+
+    .story-copy.light {
+      background: #e8dfd3;
+      color: #17130f;
+    }
+
+    .story-copy.light p {
+      color: rgba(23,19,15,0.76);
+    }
+
+    .section-label {
+      margin-bottom: 18px;
+      color: #f08a3e;
+      font: 700 0.76rem/1.5 Arial, sans-serif;
+      letter-spacing: 0.23em;
+      text-transform: uppercase;
+    }
+
+    .story-copy h2 {
+      margin: 0 0 24px;
+      font-size: clamp(2.6rem, 6vw, 6.2rem);
+      line-height: 0.88;
+      letter-spacing: -0.065em;
+    }
+
+    .story-copy p {
+      max-width: 650px;
+      margin: 0 0 20px;
+      color: rgba(244,234,220,0.74);
+      font-size: clamp(1.05rem, 1.7vw, 1.28rem);
+      line-height: 1.82;
+    }
+
+    .image-life {
+      background-image: url("images/02-life-before.png");
+    }
+
+    .image-war {
+      background-image: url("images/03-war-arrives.png");
+    }
+
+    .image-world {
+      background-image: url("images/04-broken-world.png");
+    }
+
+    .image-bond {
+      background-image: url("images/05-alex-bo-pig-bond.png");
+    }
+
+    .image-hope {
+      background-image: url("images/06-walking-toward-light.png");
+    }
+
+    .route {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .route span {
+      padding: 10px 13px;
+      border-radius: 999px;
+      color: rgba(244,234,220,0.78);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .story-copy.light .route span {
+      color: rgba(23,19,15,0.75);
+      background: rgba(0,0,0,0.06);
+      border-color: rgba(0,0,0,0.12);
+    }
+
+    .finale {
+      min-height: 100vh;
+      position: relative;
       display: grid;
       place-items: center;
-      padding: 72px 0 0;
-      background:
-        radial-gradient(circle at 50% 18%, rgba(229, 137, 61, 0.16), transparent 32%),
-        linear-gradient(180deg, #050505 0%, #12100d 45%, #050505 100%);
-    }
-
-    .artwork {
-      width: 100%;
-      max-width: 1600px;
-      display: block;
-      box-shadow: 0 40px 130px rgba(0, 0, 0, 0.75);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .fallback {
-      max-width: 760px;
-      padding: 120px 24px;
       text-align: center;
-      display: none;
+      padding: 110px 24px;
+      overflow: hidden;
+      isolation: isolate;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
 
-    .fallback h1 {
-      margin: 0 0 20px;
-      font-size: clamp(3rem, 10vw, 8rem);
-      line-height: 0.85;
-      letter-spacing: -0.07em;
+    .finale::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.82)),
+        url("images/06-walking-toward-light.png");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(0.78) contrast(1.12) brightness(0.8);
+      transform: scale(1.03);
     }
 
-    .fallback p {
-      margin: 0 auto;
-      max-width: 640px;
-      color: rgba(244, 234, 220, 0.78);
-      font-size: 1.1rem;
-      line-height: 1.7;
-    }
-
-    .story-text {
+    .finale h2 {
       max-width: 980px;
+      margin: 0 auto 26px;
+      font-size: clamp(3.5rem, 10vw, 10rem);
+      line-height: 0.82;
+      letter-spacing: -0.075em;
+      text-shadow: 0 30px 90px rgba(0,0,0,0.9);
+    }
+
+    .finale p {
+      max-width: 740px;
       margin: 0 auto;
-      padding: 96px 24px 120px;
-      color: rgba(244, 234, 220, 0.82);
+      color: rgba(244,234,220,0.82);
+      font-size: clamp(1.08rem, 2vw, 1.42rem);
+      line-height: 1.74;
+      text-shadow: 0 12px 32px rgba(0,0,0,0.9);
     }
 
-    .story-text h2 {
-      margin: 0 0 20px;
-      font-size: clamp(2.4rem, 6vw, 5.8rem);
-      line-height: 0.9;
-      letter-spacing: -0.06em;
-      color: #f4eadc;
-    }
-
-    .story-text p {
-      font-size: clamp(1.05rem, 2vw, 1.32rem);
-      line-height: 1.82;
-      margin: 0 0 22px;
-    }
-
-    .credit {
-      padding: 28px 20px 42px;
+    footer {
+      padding: 34px 24px 46px;
       text-align: center;
       color: rgba(244,234,220,0.45);
+      background: #050505;
       font-family: Arial, sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.86rem;
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 860px) {
       .topbar {
-        align-items: flex-start;
         flex-direction: column;
-        background: rgba(0,0,0,0.65);
+        align-items: flex-start;
+        background: rgba(0,0,0,0.72);
         backdrop-filter: blur(12px);
       }
 
@@ -170,60 +323,134 @@
         padding-bottom: 4px;
       }
 
-      .artwork-wrap {
-        padding-top: 120px;
+      .story-section,
+      .story-section:nth-child(even) {
+        grid-template-columns: 1fr;
+      }
+
+      .story-section:nth-child(even) .story-image {
+        order: 0;
+      }
+
+      .story-image {
+        min-height: 420px;
       }
     }
   </style>
 </head>
 <body>
-  <main class="page" id="home">
+  <main>
     <header class="topbar">
       <div class="brand">Alex & Bo Pig</div>
       <nav class="nav" aria-label="Main navigation">
-        <a href="#home">Home</a>
-        <a href="#story">Story</a>
+        <a href="#beginning">Beginning</a>
+        <a href="#walk">Walk</a>
+        <a href="#world">World</a>
+        <a href="#bond">Bond</a>
         <a href="#hope">Hope</a>
       </nav>
     </header>
 
-    <section class="artwork-wrap" aria-label="Cinematic visual story of Alex and Bo Pig">
-      <!--
-        IMPORTANT:
-        Upload the generated image to the same GitHub repository folder as this index.html file.
-        Rename the image exactly to: alex-bo-pig-cinematic.png
-      -->
-      <img
-        class="artwork"
-        src="alex-bo-pig-cinematic.png"
-        alt="Cinematic visual story of Alex and Bo Pig walking through an apocalyptic Banksia Beach after a mysterious war."
-        onerror="this.style.display='none'; document.querySelector('.fallback').style.display='block';"
-      />
-
-      <div class="fallback">
-        <h1>Alex & Bo Pig</h1>
+    <section class="hero" id="beginning">
+      <div>
+        <div class="kicker">Banksia Beach, Queensland</div>
+        <h1>Alex &<br />Bo Pig</h1>
         <p>
-          The image file could not be found. Upload the generated artwork beside this index.html file and name it alex-bo-pig-cinematic.png.
+          When a mysterious war came through, Alex and her merle border collie walked out of their home in Banksia Beach and into an apocalyptic world.
         </p>
       </div>
     </section>
 
-    <section class="story-text" id="story">
-      <h2>A story of survival. A bond that remains.</h2>
-      <p>
-        When a mysterious war came through, Alex and her merle border collie, Bo Pig, walked out of their home in Banksia Beach and into a world changed beyond recognition. The roads were empty, the air was thick with dust and ash, and the silence felt larger than the sky.
-      </p>
-      <p>
-        They did not have a plan. They had each other. Bo Pig kept moving forward, nose low to the ground, ears raised toward every distant sound. Alex followed, step by step, through the ruins of a place that used to feel safe.
-      </p>
-      <p id="hope">
-        Somewhere beyond the smoke and broken streets, there was still light. As long as Alex and Bo Pig were together, there was still a way forward.
-      </p>
+    <section class="story-section">
+      <div class="story-image image-life" aria-label="Alex and Bo Pig on a peaceful beach before the war"></div>
+      <div class="story-copy light">
+        <div class="section-label">The Beginning</div>
+        <h2>Life was simple.</h2>
+        <p>
+          Sunrise walks on the beach. Salt in the air. Coffee on the deck. Bo Pig chasing birds and waves, always by Alex’s side.
+        </p>
+        <p>
+          They had a life they loved. It was ordinary in the way the best things are ordinary — unnoticed until the moment they are gone.
+        </p>
+      </div>
+    </section>
+
+    <section class="story-section" id="walk">
+      <div class="story-image image-war" aria-label="Alex and Bo Pig walking through a destroyed road after the war"></div>
+      <div class="story-copy">
+        <div class="section-label">The Walk</div>
+        <h2>Then came the war.</h2>
+        <p>
+          No warning. No reason. Just fire, explosions, and silence. The world outside the front door became strange, emptied, and broken.
+        </p>
+        <p>
+          Alex and Bo Pig did not have a plan. They just kept walking. One step. Then another. Together.
+        </p>
+        <div class="route">
+          <span>Front door</span>
+          <span>Ash driveway</span>
+          <span>Silent canal</span>
+          <span>Burnt banksias</span>
+          <span>Empty road</span>
+          <span>The Passage</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="story-section" id="world">
+      <div class="story-image image-world" aria-label="A ruined city and broken bridge after an apocalyptic war"></div>
+      <div class="story-copy light">
+        <div class="section-label">The World</div>
+        <h2>The world is gone.</h2>
+        <p>
+          Cities are ruins. Nature is wild. The air is thick with dust and ash. Danger hides in every shadow.
+        </p>
+        <p>
+          But Alex and Bo Pig keep moving forward, following the coast, the wind, and the faint hope of another living soul.
+        </p>
+      </div>
+    </section>
+
+    <section class="story-section" id="bond">
+      <div class="story-image image-bond" aria-label="Alex hugging Bo Pig in the ash after the war"></div>
+      <div class="story-copy">
+        <div class="section-label">The Bond</div>
+        <h2>All they have is each other.</h2>
+        <p>
+          Bo Pig is not just a dog. He is Alex’s protector, her best friend, and her reason to keep going.
+        </p>
+        <p>
+          In a world that has fallen apart, their bond is unbreakable. When Alex cannot trust the road, she trusts Bo Pig.
+        </p>
+      </div>
+    </section>
+
+    <section class="story-section" id="hope">
+      <div class="story-image image-hope" aria-label="Alex and Bo Pig standing on a hill looking toward distant light"></div>
+      <div class="story-copy light">
+        <div class="section-label">The Hope</div>
+        <h2>They keep walking.</h2>
+        <p>
+          Through the unknown. Toward a tomorrow they cannot see. Hope lives in every heartbeat, every pawstep, every sunrise.
+        </p>
+        <p>
+          As long as they are together, they will find a way.
+        </p>
+      </div>
+    </section>
+
+    <section class="finale">
+      <div>
+        <h2>They walk toward the light.</h2>
+        <p>
+          Alex with ash on her cheeks. Bo Pig with salt on his whiskers. Behind them, Banksia Beach waits in silence. Ahead, the broken world holds its breath.
+        </p>
+      </div>
     </section>
   </main>
 
-  <footer class="credit">
-    Alex & Bo Pig — Banksia Beach after the war.
+  <footer>
+    Alex & Bo Pig — a cinematic survival story set in Banksia Beach.
   </footer>
 </body>
 </html>
